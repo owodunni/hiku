@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  hiku:
+    image: hiku
+    volumes:
+      - .:/hiku
+    command: /hiku/gradlew build

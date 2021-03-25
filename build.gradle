@@ -16,6 +16,11 @@ buildscript {
     }
 }
 
+
+def username = System.properties['user.name']
+def uid = ["id", "-u", username].execute().text.trim()
+def gid = ["id", "-g", username].execute().text.trim()
+
 allprojects {
     repositories {
         google()
@@ -28,5 +33,9 @@ task clean(type: Delete) {
 }
 
 task assembleDocker(type: Exec) {
-    commandLine "docker", "build", ".", "-t", "hiku"
+    commandLine "docker", "build",
+        "--build-arg", "USER=$username",
+        "--build-arg", "UID=$uid",
+        "--build-arg", "GID=$gid",
+        "-t", "hiku", "."
 }
