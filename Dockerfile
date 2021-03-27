@@ -41,27 +41,16 @@ RUN mkdir -p $ANDROID_SDK_ROOT/licenses/ \
  && echo "84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910" > $ANDROID_SDK_ROOT/licenses/android-sdk-preview-license \
  && yes | sdkmanager --licenses >/dev/null
 
-ARG USER=docker
-ARG UID=1000
-ARG GID=1000
-
-RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}"
-
-RUN mkdir -p /home/${USER}/.android \
- && touch /home/${USER}/.android/repositories.cfg \
+RUN mkdir -p /root/.android \
+ && touch /root/.android/repositories.cfg \
  && sdkmanager --update
 
 ADD packages.txt /sdk
-RUN sdkmanager --package_file=/sdk/packages.txt && \
-    chown -R ${UID}:${GID} /home/${USER}/.android
+RUN sdkmanager --package_file=/sdk/packages.txt
 
 WORKDIR /hiku
 
 ADD gradlew gradlew
 ADD gradle gradle
-
-RUN chown -R ${UID}:${GID} /hiku && chmod +x /hiku/gradlew
-
-USER ${USER}
 
 RUN ./gradlew
