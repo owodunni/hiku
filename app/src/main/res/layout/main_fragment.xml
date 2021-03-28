@@ -6,13 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <StackView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_fragment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="Hello"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="hello"
+            android:inputType="textPassword"
+            android:hint="@string/password"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </StackView>
 </androidx.constraintlayout.widget.ConstraintLayout>
