@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   hiku:
-    image: hiku
+    image: owodunni/android
     volumes:
-      - .:/hiku
-    command: /hiku/gradlew build
+      - .:/app
+    command: /app/gradlew build

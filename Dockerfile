@@ -48,7 +48,7 @@ RUN mkdir -p /root/.android \
 ADD packages.txt /sdk
 RUN sdkmanager --package_file=/sdk/packages.txt
 
-WORKDIR /hiku
+WORKDIR /app
 
 ADD gradlew gradlew
 ADD gradle gradle
